@@ -6,5 +6,7 @@ CREATE TABLE animals(
     date_of_birth        date, 
     escape_attempts     INT, 
     neutered            boolean, 
-    weight_kg           DEC
-);
+    weight_kg           DEC,
+    );
+    
+    ALTER TABLE animals ADD species VARCHAR(50);

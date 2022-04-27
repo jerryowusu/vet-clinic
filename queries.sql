@@ -64,3 +64,21 @@ SELECT MAX(escape_attempts) FROM animals;
 SELECT MAX(weight_kg), MIN(weight_kg) FROM animals GROUP BY species;
 SELECT AVG(escape_attempts) FROM animals WHERE date_of_birth BETWEEN '1990-01-01' AND '2000-01-01' GROUP BY species;
 
+/* write queries to answer the questions */
+SELECT animals.name FROM animals JOIN owners ON animals.owner_id = owners.id WHERE owners.id = 4;
+
+SELECT animals.name FROM animals JOIN species ON animals.species_id = species.id WHERE species.id = 1;
+
+SELECT animals.name, owners.fulL_name FROM owners LEFT JOIN animals ON owners.id = animals.owner_id;
+
+SELECT species.name, COUNT(*) FROM animals JOIN species ON species.id = animals.species_id GROUP BY species.name;
+
+SELECT animals.name, owners.full_name, species.name FROM animals
+JOIN species ON species.id = animals.species_id
+JOIN owners ON owners.id = animals.owner_id
+WHERE owners.id = 2 AND species.name = 'Digimon';
+
+SELECT * FROM animals JOIN owners ON animals.owner_id = owners.id 
+WHERE animals.escape_attempts = 0 AND owners.id = 5;
+
+SELECT owners.full_name, COUNT(*) AS count FROM owners JOIN animals ON animals.owner_id = owners.id GROUP BY owners.id ORDER BY count DESC limit 1;

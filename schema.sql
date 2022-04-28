@@ -31,3 +31,27 @@ CREATE TABLE species(
     name                 VARCHAR(50), 
     );
 
+
+CREATE TABLE vets (
+  id                       SERIAL PRIMARY KEY,
+  name                      VARCHAR(50),
+  age                       INT,
+  date_of_graduation        DATE
+);
+
+CREATE TABLE specializations (
+  id                        SERIAL PRIMARY KEY,
+  species_id                INT,
+  vet_id                    INT,
+  CONSTRAINT                fk_species FOREIGN KEY (species_id) REFERENCES species(id),
+  CONSTRAINT                fk_vets FOREIGN KEY (vet_id) REFERENCES vets(id)
+);
+
+CREATE TABLE visits (
+  visit_id                  SERIAL PRIMARY KEY,
+  animal_id                 INT,
+  vet_id                    INT,
+  date_of_visit             DATE,
+  CONSTRAINT                fk_animals FOREIGN KEY(animal_id) REFERENCES animals(id),
+  CONSTRAINT                fk_vets FOREIGN KEY(vet_id) REFERENCES vets(id)
+);
